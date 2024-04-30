@@ -22,7 +22,8 @@ RUN set -eux; \
 
 RUN set -eux; \
     # Install the PHP pdo_pgsql extention
-    docker-php-ext-install pdo_pgsql; \
+#    docker-php-ext-install pdo_pgsql; \
+    docker-php-ext-install pdo_mysql; \
     # Install the PHP gd library
 #    if [ ${PHP_FPM_VERSION} = "7.3" ] || [ ${PHP_FPM_VERSION} = "7.4" ] || [ $(php -r "echo PHP_MAJOR_VERSION;") = "8" ]; then \
 #        docker-php-ext-configure gd \
@@ -33,7 +34,8 @@ RUN set -eux; \
 #            --with-freetype-dir=/usr/include/freetype2; \
 #    fi && \
     docker-php-ext-install gd; \
-    php -r 'var_dump(gd_info());'
+    php -r 'var_dump(gd_info());' \
+
 
 # Install zip extension
 RUN set -xe; \
@@ -67,6 +69,11 @@ RUN set -xe; \
     docker-php-ext-install opcache && \
     # Image optimizers
     apt-get install -y jpegoptim optipng pngquant gifsicle
+
+# install redis
+RUN pecl install redis \
+   # Redis is installed, enable it
+    && docker-php-ext-enable redis
 
 # Check php version
 RUN set -xe; php -v | head -n 1 | grep -q "PHP ${PHP_VERSION}."

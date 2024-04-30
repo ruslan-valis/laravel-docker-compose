@@ -34,6 +34,7 @@ services:
       - backend
     depends_on:
       - mysql
+      - redis
   nginx:
     container_name: nginx
     build:
