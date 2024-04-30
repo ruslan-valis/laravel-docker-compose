@@ -118,3 +118,11 @@ yarn-error.log
 /.idea
 /.vscode
 ###> Laravel ###
+
+###> docker/docker ###
+# Environemnt Variables
+.env.*
+!.env.example
+docker/mysql/data/*
+docker/logs/nginx/*
+###< docker/docker ###

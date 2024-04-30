@@ -21,10 +21,10 @@ Default project services orchestration settings are located at `docker-compose.y
 ### Initial configuration
 Environment variables via `.env` files are used to manage both docker and application environment settings.
 
-Basic list of environment variables is provided in `.env.dist`.
-However, in order to run project locally, you need to have `.env.local`, which can be copied from `.env.dist` and updated with necessary environment variables.
+Basic list of environment variables is provided in `.env.example`.
+However, in order to run project locally, you need to have `.env`, which can be copied from `.env.example` and updated with necessary environment variables.
 
-By default, `.env.dist` should contain values to start project out of the box locally.
+By default, `.env.example` should contain values to start project out of the box locally.
 
 ### Building environment
 In order to build and run the project using docker-compose, you can use the next command:
@@ -44,6 +44,13 @@ All commands should be executed from php-fpm container, in order to do that you 
 docker exec -it php-fpm /bin/bash
 ```
 Alternatively, you can setup default php interpreter in your IDE to use docker php version, then you can just run commands directly from the IDE.
+
+### Setup app key
+Please pay attention, that you need to set up app key on the first app setup. 
+To do that please run:
+```
+php artisan key:generate
+```
 
 ## Development
 All commands listed in this section should be executed from php-fpm docker container shell.
