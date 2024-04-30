@@ -124,5 +124,6 @@ yarn-error.log
 .env.*
 !.env.example
 docker/mysql/data/*
+docker/redis/data/*
 docker/logs/nginx/*
 ###< docker/docker ###
